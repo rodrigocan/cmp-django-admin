@@ -1,0 +1,8 @@
+<form action="{% url 'cmp_admin:open_ticket' %}" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <label for="contact_email">E-mail de contato:</label>
+    <input type="text">
+  </fieldset>
+  <input type="submit">
+</form>

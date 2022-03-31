@@ -1,0 +1,17 @@
+<h1>Últimos chamados</h1>
+
+<ul>
+    {% for ticket in object_list %}
+        <fieldset>
+            <li>{{ ticket.place_id }}</li>
+            <li>{{ ticket.sector_id }}</li>
+            <li>{{ ticket.service }}</li>
+            <li>{{ ticket.description }}</li>
+            <fieldset>
+                {% for info in ticket.infos.all %}
+                    <p>{{ info.description }}</p>
+                {% endfor %}
+            </fieldset>
+        </fieldset>
+    {% endfor %}
+</ul>
