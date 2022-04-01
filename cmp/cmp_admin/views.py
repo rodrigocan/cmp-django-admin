@@ -1,13 +1,13 @@
 from django.views import generic
 
-from .models import Ticket
+from .models import Ticket, Status
 
 class IndexView(generic.ListView):
   template_name = 'cmp_admin/index.html'
-  context_object_name = 'latest_ticket_list'
+  context_object_name = 'earliest_open_ticket_list'
 
   def get_queryset(self):
-    return Ticket.objects.order_by('-created_at')[:3]
+    return Ticket.objects.filter(status_id = 1).order_by('created_at')[:3]
 
 class TicketDetailView(generic.DetailView):
   model = Ticket

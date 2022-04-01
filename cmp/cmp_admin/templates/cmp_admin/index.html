@@ -1,86 +1,38 @@
 {% extends 'cmp_admin/base.html' %}
 
+{% block extra-css %}
+<style>
+  .card {
+    border-radius: 1rem;
+  }
+</style>
+{% endblock extra-css %}
+
 {% block main %}
 
+<p class="title is-3">Chamados mais antigos em aberto:</p>
+
 <div class="columns">
-  <div class="card mx-4 my-4">
+  {% for ticket in earliest_open_ticket_list %}
+  <div class="column card p-4 m-4 has-background-warning">
+    <div class="card-header">
+      <p class="title is-5">{{ ticket.place_id }}</p>
+    </div>
     <div class="card-content">
       <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img
-              src="https://bulma.io/images/placeholders/96x96.png"
-              alt="Placeholder image"
-            />
-          </figure>
-        </div>
         <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
+          <p><strong>Setor: </strong>{{ ticket.sector_id }}</p>
+          <p><strong>Área: </strong>{{ ticket.subject_id }}</p>
+          <p><strong>Serviço: </strong> {{ ticket.service_id }}</p>
         </div>
       </div>
 
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      <div class="card-footer">
+        <strong>Aberto em: </strong><time datetime>{{ ticket.created_at }}</time>
       </div>
     </div>
   </div>
-  <div class="card mx-4 my-4">
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img
-              src="https://bulma.io/images/placeholders/96x96.png"
-              alt="Placeholder image"
-            />
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
-        </div>
-      </div>
-
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
-    </div>
-  </div>
-  <div class="card mx-4 my-4">
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img
-              src="https://bulma.io/images/placeholders/96x96.png"
-              alt="Placeholder image"
-            />
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
-        </div>
-      </div>
-
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 
 {% endblock main %}
