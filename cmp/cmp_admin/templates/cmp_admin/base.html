@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <title>CMP Admin</title>
+  </head>
+  <body>
+    {% block nav %}
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="https://bulma.io">
+						<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="112" height="28">
+					</a>
+			
+					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+				<div id="navbar" class="navbar-menu">
+					<div class="navbar-start">
+						<a class="navbar-item"> Início</a>
+						<a class="navbar-item"> Chamados</a>
+					</div>
+
+					<div class="navbar-end">
+						<a class="navbar-item"> Sair </a>
+					</div>
+				</div>
+			</nav>
+    {% endblock nav %}
+		
+		{% block hero %}
+			<section class="hero">
+				<div class="hero-body">
+					<p class="title">CMP Admin</p>
+					<p class="subtitle">
+						Sistema de gerenciamento da Coordenadoria de Manutenção e Projetos
+					</p>
+				</div>
+			</section>
+    {% endblock hero %}
+		
+		<section class="section">
+      <div class="container">
+
+        {% block main %}{% endblock main %}
+
+      </div>
+    </section>
+
+		{% block footer %}
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Tribunal Regional do Trabalho da 5ª Região</strong>
+					<p>Coordenadoria de Manutenção e Projetos</p>
+        </p>
+      </div>
+		</footer>
+    {% endblock footer %}
+  </body>
+</html>
