@@ -33,6 +33,24 @@ class Info(models.Model):
   def __str__(self):
     return self.description
 
+class Subject(models.Model):
+  name: models.CharField(max_length = 255)
+  service: models.ManyToManyField('Service')
+  created_at = models.DateTimeField(auto_now_add = True)
+  updated_at = models.DateTimeField(auto_now = True)
+
+  def __str__(self):
+    return self.name
+
+class Service(models.Model):
+  name: models.CharField(max_length = 255)
+  subject_id = models.ForeignKey(Subject, on_delete = models.SET_NULL, null = True)
+  created_at = models.DateTimeField(auto_now_add = True)
+  updated_at = models.DateTimeField(auto_now = True)
+
+  def __str__(self):
+    return self.name
+
 class Ticket(models.Model):
   place_id = models.ForeignKey(Place, on_delete = models.SET_NULL, null = True)
   contact_email = models.EmailField()
@@ -45,6 +63,8 @@ class Ticket(models.Model):
   status = models.CharField(max_length = 255)
   created_at = models.DateTimeField(auto_now_add = True)
   updated_at = models.DateTimeField(auto_now = True)
+  subject_id = models.ForeignKey(Subject, on_delete = models.SET_NULL, null = True)
+  service_id = models.ForeignKey(Service, on_delete = models.SET_NULL, null = True)
 
   def __str__(self):
     return str(self.pk)
