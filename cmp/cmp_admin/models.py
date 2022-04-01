@@ -34,8 +34,7 @@ class Info(models.Model):
     return self.description
 
 class Subject(models.Model):
-  name: models.CharField(max_length = 255)
-  service: models.ManyToManyField('Service')
+  name = models.CharField(max_length = 255)
   created_at = models.DateTimeField(auto_now_add = True)
   updated_at = models.DateTimeField(auto_now = True)
 
@@ -43,8 +42,16 @@ class Subject(models.Model):
     return self.name
 
 class Service(models.Model):
-  name: models.CharField(max_length = 255)
+  name = models.CharField(max_length = 255)
   subject_id = models.ForeignKey(Subject, on_delete = models.SET_NULL, null = True)
+  created_at = models.DateTimeField(auto_now_add = True)
+  updated_at = models.DateTimeField(auto_now = True)
+
+  def __str__(self):
+    return self.name
+
+class Status(models.Model):
+  name = models.CharField(max_length = 255)
   created_at = models.DateTimeField(auto_now_add = True)
   updated_at = models.DateTimeField(auto_now = True)
 
@@ -56,7 +63,6 @@ class Ticket(models.Model):
   contact_email = models.EmailField()
   sector_id = models.ForeignKey(Sector, on_delete = models.SET_NULL, null = True)
   contact_phone = models.CharField(max_length = 255)
-  service = models.CharField(max_length = 255)
   description = models.TextField(max_length = 255)
   assigned_to_id = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
   infos = models.ManyToManyField('Info')
@@ -65,6 +71,7 @@ class Ticket(models.Model):
   updated_at = models.DateTimeField(auto_now = True)
   subject_id = models.ForeignKey(Subject, on_delete = models.SET_NULL, null = True)
   service_id = models.ForeignKey(Service, on_delete = models.SET_NULL, null = True)
+  status_id = models.ForeignKey(Status, on_delete = models.SET_NULL, null = True)
 
   def __str__(self):
     return str(self.pk)
