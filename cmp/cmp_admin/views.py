@@ -19,3 +19,8 @@ class OpenTicketView(generic.CreateView):
 
 class ShowTicketsView(generic.ListView):
   model = Ticket
+  template_name = 'cmp_admin/show_tickets.html'
+  context_object_name = 'all_tickets'
+
+  def get_queryset(self):
+    return Ticket.objects.all().order_by('created_at')

@@ -1,0 +1,51 @@
+{% extends 'cmp_admin/base.html' %}
+
+{% block extra-css %}
+<style>
+  .hoverable-row:hover {
+    background-color: gray;
+  }
+</style>
+{% endblock extra-css %}
+
+{% block main %}
+<section class="section">
+  <div class="container">
+    <p class="title is-3">Chamados:</p>
+    <div class="columns is-centered">
+      <table class="table is-bordered is-narrow">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Local</th>
+            <th>Setor</th>
+            <th>Telefone</th>
+            <th>Área</th>
+            <th>Serviço</th>
+          </tr>
+          <tbody>
+
+          {% for ticket in all_tickets %}
+          <tr class="hoverable-row">
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.status_id }}</td>
+            <td>{{ ticket.created_at.date|date:'d/m/Y' }}</td>
+            <td>{{ ticket.created_at.time }}</td>
+            <td>{{ ticket.place_id }}</td>
+            <td>{{ ticket.sector_id }}</td>
+            <td>{{ ticket.contact_phone }}</td>
+            <td>{{ ticket.subject_id }}</td>
+            <td>{{ ticket.service_id }}</td>
+          </tr>
+          {% endfor %}
+
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock main %}
