@@ -1,6 +1,8 @@
+from urllib import request
 from django.views import generic
 
-from .models import Ticket, Status
+from .models import Ticket
+from .forms import TicketForm
 
 class IndexView(generic.ListView):
   template_name = 'cmp_admin/index.html'
@@ -13,9 +15,14 @@ class TicketDetailView(generic.DetailView):
   model = Ticket
   template_name = 'cmp_admin/ticket_detail.html'
 
+class OpenTicketSuccessView(generic.CreateView):
+  form_class = TicketForm
+  template_name = 'cmp_admin/open_ticket_success.html'
+
 class OpenTicketView(generic.CreateView):
-  model = Ticket
-  fields = ['contact_email', 'service', 'description']
+  form_class = TicketForm
+  template_name = 'cmp_admin/open_ticket.html'
+  success_url = '/cmp_admin/open_ticket_success/'
 
 class ShowTicketsView(generic.ListView):
   model = Ticket

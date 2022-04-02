@@ -1,8 +1,21 @@
-<form action="{% url 'cmp_admin:open_ticket' %}" method="post">
+{% extends 'cmp_admin/base.html' %}
+
+{% block extra-css %}
+<style>
+  form {
+    margin-top: 0.1rem;
+  }
+
+  form > p {
+    margin: 1rem;
+  }
+</style>
+{% endblock extra-css %}
+
+{% block main %}
+<form class="is-flex is-flex-direction-column" method="post" action=".">
   {% csrf_token %}
-  <fieldset>
-    <label for="contact_email">E-mail de contato:</label>
-    <input type="text">
-  </fieldset>
-  <input type="submit">
+  {{ form.as_p }}
+  <button class="button is-info is-justify-content-flex-end" type="submit">Enviar</button>
 </form>
+{% endblock main %}
