@@ -1,10 +1,11 @@
-from urllib import request
 from django.views import generic
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Ticket
-from .forms import TicketForm
+from .forms import TicketForm, LoginForm
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
   template_name = 'cmp_admin/index.html'
   context_object_name = 'earliest_open_ticket_list'
 
@@ -31,3 +32,7 @@ class ShowTicketsView(generic.ListView):
 
   def get_queryset(self):
     return Ticket.objects.all().order_by('created_at')
+
+class LoginView(auth_views.LoginView):
+  form_class = LoginForm
+  template_name = 'cmp_admin/login.html'

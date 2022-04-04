@@ -1,7 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 from cmp_admin.models import Ticket
-
 
 class TicketForm(forms.ModelForm):
     class Meta:
@@ -19,3 +19,7 @@ class TicketForm(forms.ModelForm):
           'service_id': forms.Select(attrs = {'class': 'select'}),
           'requester': forms.TextInput(attrs = {'class': 'input', 'placeholder': 'Digite aqui o seu nome'})
         }
+
+class LoginForm(AuthenticationForm):
+  username = forms.CharField(label = 'Usuário')
+  password = forms.CharField(label = 'Senha', widget = forms.PasswordInput)
