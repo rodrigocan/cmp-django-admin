@@ -72,6 +72,8 @@ class Ticket(models.Model):
   service_id = models.ForeignKey(Service, on_delete = models.SET_NULL, null = True)
   status_id = models.ForeignKey(Status, on_delete = models.SET_NULL, null = True)
   requester = models.CharField(max_length = 255)
+  issue = models.TextField(blank = True)
+  solution = models.TextField(blank = True)
 
   def __str__(self):
     return str(self.pk)
