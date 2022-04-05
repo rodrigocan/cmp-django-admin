@@ -129,3 +129,4 @@ INTERNAL_IPS = [
 
 LOGIN_URL = '/cmp_admin/login/'
 LOGIN_REDIRECT_URL = '/cmp_admin/'
+LOGOUT_REDIRECT_URL = '/cmp_admin/login'
