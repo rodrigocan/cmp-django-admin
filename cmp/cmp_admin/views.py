@@ -12,7 +12,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
   def get_queryset(self):
     return Ticket.objects.filter(status_id = 1).order_by('created_at')[:3]
 
-class TicketDetailView(generic.DetailView):
+class TicketDetailView(LoginRequiredMixin, generic.DetailView):
   model = Ticket
   template_name = 'cmp_admin/ticket_detail.html'
 
@@ -25,7 +25,7 @@ class OpenTicketView(generic.CreateView):
   template_name = 'cmp_admin/open_ticket.html'
   success_url = '/cmp_admin/open_ticket_success/'
 
-class ShowTicketsView(generic.ListView):
+class ShowTicketsView(LoginRequiredMixin, generic.ListView):
   model = Ticket
   template_name = 'cmp_admin/show_tickets.html'
   context_object_name = 'all_tickets'
