@@ -6,7 +6,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/dataTables.bulma.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bulma.min.css">
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 <script>
   $(document).ready(function () {
@@ -21,6 +21,11 @@
 <style>
   .hoverable-row:hover {
     background-color: gray;
+  }
+
+  .with-icon {
+    display: flex;
+    justify-content: space-between;
   }
 </style>
 {% endblock extra-css %}
@@ -55,7 +60,18 @@
             <td>{{ ticket.sector_id }}</td>
             <td>{{ ticket.contact_phone }}</td>
             <td>{{ ticket.subject_id }}</td>
-            <td>{{ ticket.service_id }}</td>
+            <td>
+              <div class="with-icon">
+                {{ ticket.service_id }}
+                <a href="{% url 'cmp_admin:ticket_detail' ticket.pk %}">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </td>
           </tr>
           {% endfor %}
 
