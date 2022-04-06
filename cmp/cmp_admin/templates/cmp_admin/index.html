@@ -10,6 +10,45 @@
 
 {% block main %}
 
+<p class="title is-3">Estatísticas dos chamados:</p>
+
+<div class="columns">
+  <div class="column card p-4 m-4">
+    <div class="card-header">
+      <p class="title is-5">Total:</p>
+    </div>
+    <div>
+      {{ all_tickets_count }} (100%)
+    </div>
+  </div>
+  <div class="column card p-4 m-4">
+    <div class="card-header">
+      <p class="title is-5">Em aberto:</p>
+    </div>
+    <div>
+      {{ opened_tickets_count }} ({{ opened_tickets_perc }}%)
+    </div>
+  </div>
+  <div class="column card p-4 m-4">
+    <div class="card-header">
+      <p class="title is-5">Em andamento:</p>
+    </div>
+    <div>
+      {{ ongoing_tickets_count }} ({{ ongoing_tickets_perc }}%)
+    </div>
+  </div>
+  <div class="column card p-4 m-4">
+    <div>
+      <div class="card-header">
+        <p class="title is-5">Resolvidos:</p>
+      </div>
+    </div>
+    <div>
+      {{ solved_tickets_count }} ({{ solved_tickets_perc }}%)
+    </div>
+  </div>
+</div>
+
 <p class="title is-3">Chamados mais antigos em aberto:</p>
 
 <div class="columns">

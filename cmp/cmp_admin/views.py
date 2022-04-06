@@ -12,6 +12,17 @@ class IndexView(LoginRequiredMixin, generic.ListView):
   def get_queryset(self):
     return Ticket.objects.filter(status_id = 1).order_by('created_at')[:3]
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['all_tickets_count'] = Ticket.objects.all().count()
+    context['opened_tickets_count'] = Ticket.objects.filter(status_id = 1).count()
+    context['ongoing_tickets_count'] = Ticket.objects.filter(status_id = 2).count()
+    context['solved_tickets_count'] = Ticket.objects.filter(status_id = 3).count()
+    context['opened_tickets_perc'] = round((context['opened_tickets_count'] / context['all_tickets_count']) * 100, 2)
+    context['ongoing_tickets_perc'] = round((context['ongoing_tickets_count'] / context['all_tickets_count']) * 100, 2)
+    context['solved_tickets_perc'] = round((context['solved_tickets_count'] / context['all_tickets_count']) * 100, 2)
+    return context
+
 class TicketDetailView(LoginRequiredMixin, generic.DetailView):
   model = Ticket
   template_name = 'cmp_admin/ticket_detail.html'
