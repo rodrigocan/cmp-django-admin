@@ -21,5 +21,5 @@ class TicketForm(forms.ModelForm):
         }
 
 class LoginForm(AuthenticationForm):
-  username = forms.CharField(label = 'Usuário')
-  password = forms.CharField(label = 'Senha', widget = forms.PasswordInput)
+  username = forms.CharField(label = 'Usuário:', widget = forms.TextInput(attrs = {'class': 'input'}))
+  password = forms.CharField(label = 'Senha:', widget = forms.PasswordInput(attrs = {'class': 'input'}))

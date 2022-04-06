@@ -1,11 +1,53 @@
-{% extends 'cmp_admin/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+  />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <title>CMP Admin - Login</title>
+</head>
+<body>
+  <section class="hero is-link is-flex-direction-column is-align-items-center py-4">
+    <p class="title is-3">CMP Admin</p>
+    <p class="title is-4">Sistema de gerenciamento da Coordenadoria de Manutenção e Projetos</p>
+  </section>
+  <section class="hero is-primary is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="columns is-5-tablet is-4-desktop is-3-widescreen">
+            <form method="post" action="." class="box">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="field">
+                <div class="label">
+                  {{ field.label }}
+                </div>
+                {{ field }}
+              </div>
+              {% endfor %}
+              <div class="field">
+                <input type="submit" value="Entrar" class="button is-success">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
 
-{% block main %}
 
-<form method="post" action=".">
+
+
+<!-- <form method="post" action=".">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Entrar">
-</form>
-
-{% endblock main %}
+</form> -->
