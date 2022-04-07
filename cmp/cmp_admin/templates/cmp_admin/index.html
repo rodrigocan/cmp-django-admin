@@ -67,8 +67,8 @@
           </div>
         </div>
   
-        <div class="card-footer">
-          <strong>Aberto em: </strong><time datetime>{{ ticket.created_at }}</time>
+        <div class="card-footer is-flex-direction-column">
+          <p><strong>Aberto em: </strong><time datetime>{{ ticket.created_at }} ({{ ticket.created_at|timesince }})</time></p>
         </div>
       </div>
   </a>
